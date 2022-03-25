@@ -13,11 +13,10 @@ function App() {
   const [filteredTasks, setFilteredTasks] = useState(TASKS);
 
   function handleTasks(newTasks) {
-    setTasks(newTasks);
+    setFilteredTasks(newTasks);
   }
 
   function handleCategoryFilter(category) {
-    console.log("current cateogry is: " + category)
     setCurrentCategory(category);
     if (category === 'All') {
       setFilteredTasks(tasks);
@@ -27,11 +26,15 @@ function App() {
     }
   }
 
+  function handleAddTask(task) {
+    setFilteredTasks([...filteredTasks, task]);
+  }
+
   return (
     <div className="App">
       <h2>My tasks</h2>
       <CategoryFilter categories={CATEGORIES} setCategoryFilter={handleCategoryFilter} />
-      <NewTaskForm />
+      <NewTaskForm categories={CATEGORIES} onTaskFormSubmit={handleAddTask} />
       <TaskList tasks={filteredTasks} updateTasks={handleTasks} />
     </div>
   );

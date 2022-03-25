@@ -4,7 +4,7 @@ import Task from "./Task";
 function TaskList({tasks, updateTasks, currentCategory}) {
 
   function handleDelete(taskIndex) {
-    const newTasks = tasks.filter((task, index) => index !== taskIndex);
+    const newTasks = tasks.filter((task, index) => task !== tasks[taskIndex]);
     updateTasks(newTasks);
   }
   
